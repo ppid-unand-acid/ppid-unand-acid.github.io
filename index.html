@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PPID UNAND - Pusat Pelayanan Informasi Publik Universitas Andalas</title>
+<meta name="google-site-verification" content="SrTZawFSaLAONuV52vjH13dAEw3zOeO0J7W9G7wwpi8" />
+<link href="https://ppid.unand.ac.id/images/Logo%20Unand%20PTNBH%201.png" rel="shortcut icon" type="image/vnd.microsoft.icon">
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Open Sans', sans-serif; font-size: 14px; color: #333; background: #f5f5f5; }
+
+  /* TOP BAR */
+  .topbar {
+    background: #055e37;
+    color: #fff;
+    font-size: 12px;
+    padding: 6px 0;
+  }
+  .topbar .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .topbar a { color: #cce; text-decoration: none; margin-left: 12px; }
+  .topbar a:hover { color: #fff; }
+  .topbar .social a { font-size: 13px; }
+
+  /* HEADER */
+  header {
+    background: #fff;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+  .header-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 8px 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .header-logo img {
+    height: 68px;
+    object-fit: contain;
+  }
+  .header-logo .logo-text {
+    display: flex;
+    flex-direction: column;
+    margin-left: 12px;
+  }
+  .header-logo .logo-text span:first-child {
+    font-size: 18px;
+    font-weight: 700;
+    color: #055e37;
+    letter-spacing: 1px;
+  }
+  .header-logo .logo-text span:last-child {
+    font-size: 11px;
+    color: #555;
+  }
+  .header-logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+  }
+
+  /* NAV */
+  nav {
+    background: #055e37;
+  }
+  nav .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+  }
+  nav ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  nav ul li {
+    position: relative;
+  }
+  nav ul li a, nav ul li span {
+    display: block;
+    color: #fff;
+    text-decoration: none;
+    padding: 13px 16px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+    white-space: nowrap;
+  }
+  nav ul li:hover > a,
+  nav ul li:hover > span {
+    background: #0e5c9e;
+  }
+  nav ul li span::after {
+    content: ' ▾';
+    font-size: 10px;
+  }
+  /* Dropdown */
+  nav ul li .dropdown {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: #fff;
+    min-width: 240px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    z-index: 999;
+    border-top: 3px solid #0e5c9e;
+  }
+  nav ul li:hover .dropdown {
+    display: block;
+  }
+  nav ul li .dropdown li a {
+    color: #333;
+    padding: 9px 18px;
+    font-size: 12.5px;
+    font-weight: 400;
+    border-bottom: 1px solid #f0f0f0;
+  }
+  nav ul li .dropdown li a:hover {
+    background: #e8f2ff;
+    color: #055e37;
+  }
+
+  /* SEARCH BAR */
+  .search-bar {
+    background: #005c36;
+    padding: 8px 0;
+  }
+  .search-bar .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+    display: flex;
+    justify-content: flex-end;
+  }
+  .search-bar form {
+    display: flex;
+    gap: 0;
+  }
+  .search-bar input {
+    padding: 6px 14px;
+    border: none;
+    border-radius: 3px 0 0 3px;
+    font-size: 13px;
+    width: 220px;
+    outline: none;
+  }
+  .search-bar button {
+    background: #f5a623;
+    color: #fff;
+    border: none;
+    padding: 6px 14px;
+    border-radius: 0 3px 3px 0;
+    cursor: pointer;
+    font-size: 13px;
+  }
+
+  /* SLIDER */
+  .slider-section {
+    position: relative;
+    background: #055e37;
+    overflow: hidden;
+    height: 380px;
+  }
+  .slider-wrapper {
+    display: flex;
+    transition: transform 0.7s ease;
+    height: 100%;
+  }
+  .slide {
+    min-width: 100%;
+    height: 100%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .slide-bg {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    filter: brightness(0.6);
+  }
+  .slide-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    color: #fff;
+    padding: 20px;
+  }
+  .slide-content h2 {
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.5);
+  }
+  .slide-content p {
+    font-size: 16px;
+    max-width: 600px;
+    text-shadow: 0 1px 4px rgba(0,0,0,0.5);
+  }
+  .slider-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255,255,255,0.2);
+    color: #fff;
+    border: 2px solid rgba(255,255,255,0.6);
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10;
+    font-size: 18px;
+    transition: background 0.2s;
+  }
+  .slider-btn:hover { background: rgba(255,255,255,0.4); }
+  .slider-btn.prev { left: 20px; }
+  .slider-btn.next { right: 20px; }
+  .slider-dots {
+    position: absolute;
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+    z-index: 10;
+  }
+  .dot {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.5);
+    cursor: pointer;
+    border: none;
+    transition: background 0.2s;
+  }
+  .dot.active { background: #fff; }
+
+  /* INFO ICONS */
+  .info-icons {
+    background: #fff;
+    padding: 30px 0;
+    border-bottom: 3px solid #e0e0e0;
+  }
+  .info-icons .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+  }
+  .icon-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 20px 15px;
+    border: 1px solid #e8e8e8;
+    border-radius: 6px;
+    background: #fff;
+    transition: box-shadow 0.2s, transform 0.2s;
+    text-decoration: none;
+    color: #333;
+  }
+  .icon-card:hover {
+    box-shadow: 0 4px 16px rgba(26,58,107,0.15);
+    transform: translateY(-3px);
+  }
+  .icon-card img, .icon-card .icon-placeholder {
+    width: 64px;
+    height: 64px;
+    margin-bottom: 12px;
+    object-fit: contain;
+  }
+  .icon-card .icon-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-size: 30px;
+  }
+  .icon-card h3 {
+    font-size: 13px;
+    font-weight: 700;
+    color: #055e37;
+    margin-bottom: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .icon-card p {
+    font-size: 12px;
+    color: #666;
+    margin-bottom: 10px;
+    line-height: 1.4;
+  }
+  .icon-card .btn-lihat {
+    background: #055e37;
+    color: #fff;
+    padding: 5px 18px;
+    border-radius: 3px;
+    font-size: 12px;
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-block;
+    transition: background 0.2s;
+  }
+  .icon-card:hover .btn-lihat { background: #0e5c9e; }
+
+  /* MIDDLE BANNERS */
+  .middle-banners {
+    background: #055e37;
+    padding: 25px 0;
+  }
+  .middle-banners .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  .banner-card {
+    background: #fff;
+    border-radius: 6px;
+    padding: 22px 20px;
+    text-align: center;
+    border-left: 4px solid #f5a623;
+  }
+  .banner-card h4 {
+    font-size: 14px;
+    font-weight: 700;
+    color: #055e37;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .banner-card p {
+    font-size: 12.5px;
+    color: #555;
+    line-height: 1.5;
+    margin-bottom: 14px;
+    min-height: 40px;
+  }
+  .banner-card .btn-formulir {
+    background: #f5a623;
+    color: #fff;
+    padding: 7px 22px;
+    border-radius: 3px;
+    font-size: 12.5px;
+    font-weight: 700;
+    text-decoration: none;
+    display: inline-block;
+    letter-spacing: 1px;
+    transition: background 0.2s;
+  }
+  .banner-card .btn-formulir:hover { background: #d4881a; }
+
+  /* NEWS SECTION */
+  .news-section {
+    background: #f5f5f5;
+    padding: 35px 0;
+  }
+  .news-section .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+  }
+  .section-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: #055e37;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 3px solid #055e37;
+    display: inline-block;
+  }
+  .news-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+  .news-card {
+    background: #fff;
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: 0 1px 6px rgba(0,0,0,0.08);
+    display: flex;
+    flex-direction: column;
+    transition: box-shadow 0.2s;
+    text-decoration: none;
+    color: #333;
+  }
+  .news-card:hover { box-shadow: 0 4px 14px rgba(0,0,0,0.15); }
+  .news-card .news-tag {
+    background: #055e37;
+    color: #fff;
+    font-size: 10.5px;
+    font-weight: 700;
+    padding: 4px 12px;
+    display: inline-block;
+    letter-spacing: 1px;
+    align-self: flex-start;
+    margin: 15px 0 0 15px;
+    border-radius: 2px;
+  }
+  .news-card h3 {
+    font-size: 14px;
+    font-weight: 700;
+    color: #055e37;
+    padding: 10px 15px 6px;
+    line-height: 1.5;
+  }
+  .news-card p {
+    font-size: 12.5px;
+    color: #666;
+    padding: 0 15px 15px;
+    line-height: 1.6;
+  }
+
+  /* FOOTER */
+  footer {
+    background: #055e37;
+    color: #ccd6e8;
+    padding: 40px 0 0;
+  }
+  .footer-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+    display: grid;
+    grid-template-columns: 2fr 1.5fr 1.5fr;
+    gap: 40px;
+  }
+  .footer-logo-area img {
+    height: 70px;
+    object-fit: contain;
+    margin-bottom: 14px;
+    border-radius: 5px;
+    padding: 6px 10px;
+  }
+  .footer-logo-area p {
+    font-size: 13px;
+    line-height: 1.7;
+    color: #b0c4de;
+    max-width: 300px;
+  }
+  footer h4 {
+    color: #fff;
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-bottom: 2px solid #ffffff;
+    padding-bottom: 8px;
+  }
+  .footer-contact p {
+    font-size: 12.5px;
+    line-height: 1.8;
+    color: #b0c4de;
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    margin-bottom: 4px;
+  }
+  .footer-contact p i {
+    color: #f5a623;
+    margin-top: 3px;
+    flex-shrink: 0;
+  }
+  .footer-contact a { color: #7ec8e3; text-decoration: none; }
+  .footer-contact a:hover { color: #fff; }
+
+  .footer-hours table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12.5px;
+    color: #ffffff;
+  }
+  .footer-hours table th {
+    text-align: left;
+    color: #fff;
+    padding: 4px 8px 4px 0;
+    font-weight: 600;
+    font-size: 12px;
+    border-bottom: 1px solid #ffffff;
+  }
+  .footer-hours table td {
+    padding: 5px 8px 5px 0;
+    border-bottom: 1px solid #ffffff;
+    font-size: 12px;
+  }
+  .footer-hours table td:first-child { font-weight: 600; color: #ccd6e8; }
+
+  .footer-socials {
+    margin-top: 18px;
+  }
+  .footer-socials a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.1);
+    color: #fff;
+    font-size: 15px;
+    margin-right: 6px;
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+  .footer-socials a:hover { background: #f5a623; }
+
+  .footer-bottom {
+    max-width: 1200px;
+    margin: 30px auto 0;
+    padding: 14px 15px;
+    border-top: 1px solid #ffffff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+    color: #ffffff;
+  }
+  .footer-bottom-bar {
+    background: #055e37;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    .info-icons .container { grid-template-columns: repeat(2, 1fr); }
+    .middle-banners .container { grid-template-columns: 1fr; }
+    .footer-inner { grid-template-columns: 1fr; gap: 25px; }
+    .news-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 600px) {
+    .slider-section { height: 220px; }
+    .slide-content h2 { font-size: 20px; }
+    .info-icons .container { grid-template-columns: 1fr 1fr; }
+    nav ul li a, nav ul li span { padding: 10px 10px; font-size: 12px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <div class="container">
+    <div>
+      <span><i class="fa fa-map-marker-alt"></i> Lantai 1 Gedung Rektorat UNAND, Limau Manis, Padang</span>
+    </div>
+    <div class="social">
+      <a href="#facebook"><i class="fab fa-facebook-f"></i></a>
+      <a href="#youtube"><i class="fab fa-youtube"></i></a>
+      <a href="#twitter"><i class="fab fa-twitter"></i></a>
+      <a href="#instagram"><i class="fab fa-instagram"></i></a>
+    </div>
+  </div>
+</div>
+
+<!-- HEADER -->
+<header>
+  <div class="header-inner">
+    <a href="#home" class="header-logo">
+      <!-- Logo SVG fallback mirip logo PPID UNAND -->
+                <img class="logo-img" width="auto" height="auto" src="https://ppid.unand.ac.id/images/logo%20ppid%20bru%20web%20kampus%20berdampak.png" alt="PPID UNAND" />
+    </a>
+  </div>
+</header>
+
+<!-- NAV -->
+<nav>
+  <div class="container">
+    <ul>
+      <li><a href="#Beranda">Beranda</a></li>
+      <li>
+        <span>Profil</span>
+        <ul class="dropdown">
+          <li><a href="#sejarah-ppid">Sejarah PPID</a></li>
+          <li><a href="#profil-dan-struktur-organisasi">Profil dan Struktur Organisasi</a></li>
+          <li><a href="#visi-misi">Visi dan Misi</a></li>
+          <li><a href="#tugas-dan-fungsi">Tugas dan Fungsi</a></li>
+          <li><a href="#profil-pimpinan">Profil Pimpinan</a></li>
+          <li><a href="#maklumat-pelayanan">Maklumat Pelayanan</a></li>
+          <li><a href="#komitmen-ppid">Komitmen PPID</a></li>
+          <li><a href="#sop-layanan-informasi-publik">SOP Layanan Informasi Publik</a></li>
+          <li><a href="#kelembagaan">Kelembagaan</a></li>
+        </ul>
+      </li>
+      <li>
+        <span>Layanan Informasi</span>
+        <ul class="dropdown">
+          <li><a href="#formulir-permohonan-informasi">Formulir Permohonan Informasi</a></li>
+          <li><a href="#formulir-pengajuan-keberatan">Formulir Pengajuan Keberatan</a></li>
+          <li><a href="#Tata Cara Permohonan Informasi">Tata Cara Permohonan Informasi</a></li>
+          <li><a href="#Tata Cara Pengajuan Keberatan">Tata Cara Pengajuan Keberatan</a></li>
+          <li><a href="#Tata Cara Penyelesaian Sengketa Informasi">Tata Cara Penyelesaian Sengketa Informasi</a></li>
+          <li><a href="#Survei Kepuasan Masyarakat">Survei Kepuasan Masyarakat (SKM)</a></li>
+          <li><a href="#Dokumen Jawaban PPID">Dokumen Jawaban PPID</a></li>
+          <li><a href="#Sarana dan Prasarana">Sarana dan Prasarana</a></li>
+          <li><a href="#Surat Pernyataan">Surat Pernyataan</a></li>
+          <li><a href="#Layanan Berbasis">Layanan Berbasis Aplikasi</a></li>
+          <li><a href="#faq">faq</a></li>
+        </ul>
+      </li>
+      <li>
+        <span>Saran &amp; Pengaduan</span>
+        <ul class="dropdown">
+          <li><a href="#">Form Kritik, Saran, Masukan dan Pengaduan</a></li>
+          <li><a href="#">Tata Cara Pengaduan Penyalahgunaan Wewenang</a></li>
+          <li><a href="#">Layanan Aduan Khusus Pelecehan Seksual, Perundungan Dll</a></li>
+        </ul>
+      </li>
+      <li>
+        <span>Informasi Publik</span>
+        <ul class="dropdown">
+          <li><a href="#">Informasi Wajib Tersedia Setiap Saat</a></li>
+          <li><a href="#">Informasi Serta Merta</a></li>
+          <li><a href="#">Informasi Yang Wajib Disediakan Berkala</a></li>
+          <li><a href="#">Informasi Dikecualikan</a></li>
+          <li><a href="#">Daftar Informasi Online</a></li>
+        </ul>
+      </li>
+      <li>
+        <span>Peraturan</span>
+        <ul class="dropdown">
+          <li><a href="#">Peraturan Rektor</a></li>
+          <li><a href="#">Peraturan Majelis Wali Amanat (MWA)</a></li>
+          <li><a href="#">Peraturan Senat Akademik Universitas (SAU)</a></li>
+          <li><a href="#">Regulasi</a></li>
+          <li><a href="#">Surat Edaran</a></li>
+          <li><a href="#">Keputusan Rektor</a></li>
+        </ul>
+      </li>
+      <li>
+        <span>PPID Pelaksana</span>
+        <ul class="dropdown">
+          <li><a href="#fakultas-pertanian">Fakultas Pertanian</a></li>
+          <li><a href="#fakultas-kedokteran">Fakultas -kedokteran</a></li>
+          <li><a href="#fakultas-hukum">Fakultas Hukum</a></li>
+          <li><a href="#fakultas-mipa">Fakultas MIPA</a></li>
+          <li><a href="#fakultas-ekonomi-bisnis">Fakultas Ekonomi dan Bisnis</a></li>
+          <li><a href="#fakultas-peternakan">Fakultas Peternakan</a></li>
+          <li><a href="#fakultas-ilmu-budaya">Fakultas Ilmu Budaya</a></li>
+          <li><a href="#fakultas-ilmu-sosial-politik">Fakultas Ilmu Sosial &amp; Ilmu Politik</a></li>
+          <li><a href="#fakultas-Teknik">Fakultas -Teknik</a></li>
+          <li><a href="#fakultasFarmasi">Fakultas Farmasi</a></li>
+          <li><a href="#fakultasTeknologi Pertanian">Fakultas Teknologi Pertanian</a></li>
+          <li><a href="#fakultas-keperawatan">Fakultas Keperawatan</a></li>
+          <li><a href="#fakultas-kesehatan-masyarakat">Fakultas Kesehatan Masyarakat</a></li>
+          <li><a href="#fakultas-kedokteran-gigi">Fakultas Kedokteran Gigi</a></li>
+          <li><a href="#fakultas-teknologi-informasi">Fakultas Teknologi Informasi</a></li>
+          <li><a href="#sekolah-pascasarjana">Sekolah Pascasarjana</a></li>
+        </ul>
+      </li>
+      <li><a href="#smart-search">Smart Search</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- SEARCH BAR -->
+<div class="search-bar">
+  <div class="container">
+    <form onsubmit="return false;">
+      <input type="text" placeholder="Search...">
+      <button type="submit"><i class="fa fa-search"></i></button>
+    </form>
+  </div>
+</div>
+
+<!-- SLIDER -->
+<div class="slider-section">
+  <div class="slider-wrapper" id="sliderWrapper">
+    <!-- Slide 1 -->
+    <div class="slide">
+      <div class="slide-bg" style="background: linear-gradient(135deg, #055e37 0%, #179e0e 50%, #055e37 100%);"></div>
+      <div class="slide-content">
+        <h2>PPID Universitas Andalas</h2>
+        <p>Menjadi Pusat Pelayanan Informasi Publik yang Akurat, Transparan, dan Akuntabel Berbasis Teknologi Informasi</p>
+      </div>
+    </div>
+    <!-- Slide 2 -->
+    <div class="slide">
+      <div class="slide-bg" style="background: linear-gradient(135deg, #0e5c9e 0%, #1a5276 50%, #0e5c9e 100%);"></div>
+      <div class="slide-content">
+        <h2>Layanan Informasi Publik</h2>
+        <p>Memberikan pelayanan informasi yang cepat, tepat, dan sederhana kepada seluruh masyarakat</p>
+      </div>
+    </div>
+    <!-- Slide 3 -->
+    <div class="slide">
+      <div class="slide-bg" style="background: linear-gradient(135deg, #055e37 0%, #154360 50%, #055e37 100%);"></div>
+      <div class="slide-content">
+        <h2>Keterbukaan Informasi Publik</h2>
+        <p>Sesuai amanat UU No. 14 Tahun 2008 Tentang Keterbukaan Informasi Publik</p>
+      </div>
+    </div>
+    <!-- Slide 4 -->
+    <div class="slide">
+      <div class="slide-bg" style="background: linear-gradient(135deg, #0a2d5a 0%, #0e5c9e 50%, #0a2d5a 100%);"></div>
+      <div class="slide-content">
+        <h2>Kampus Universitas Andalas</h2>
+        <p>Kampus Limau Manis, Padang, Sumatera Barat — Berdiri sejak 13 September 1956</p>
+      </div>
+    </div>
+  </div>
+  <button class="slider-btn prev" onclick="moveSlide(-1)">&#8249;</button>
+  <button class="slider-btn next" onclick="moveSlide(1)">&#8250;</button>
+  <div class="slider-dots" id="sliderDots">
+    <button class="dot active" onclick="goSlide(0)"></button>
+    <button class="dot" onclick="goSlide(1)"></button>
+    <button class="dot" onclick="goSlide(2)"></button>
+    <button class="dot" onclick="goSlide(3)"></button>
+  </div>
+</div>
+
+<!-- INFO ICONS -->
+<div class="info-icons">
+  <div class="container">
+    <a class="icon-card" href="#">
+      <div class="icon-placeholder" style="background:#e8f0fb;">
+        <svg width="50" height="50" viewBox="0 0 50 50" fill="none">
+          <circle cx="25" cy="25" r="24" fill="#055e37" opacity="0.08"/>
+          <rect x="13" y="14" width="24" height="22" rx="2" fill="#055e37"/>
+          <rect x="17" y="19" width="16" height="2" rx="1" fill="#fff"/>
+          <rect x="17" y="23" width="12" height="2" rx="1" fill="#fff"/>
+          <rect x="17" y="27" width="14" height="2" rx="1" fill="#fff"/>
+          <circle cx="35" cy="14" r="5" fill="#f5a623"/>
+          <text x="35" y="17.5" text-anchor="middle" fill="#fff" font-size="7" font-family="Arial" font-weight="bold">!</text>
+        </svg>
+      </div>
+      <h3>INFORMASI SETIAP SAAT</h3>
+      <p>Informasi yang tersedia Setiap Saat</p>
+      <span class="btn-lihat">Lihat</span>
+    </a>
+    <a class="icon-card" href="#">
+      <div class="icon-placeholder" style="background:#fef6e8;">
+        <svg width="50" height="50" viewBox="0 0 50 50" fill="none">
+          <circle cx="25" cy="25" r="24" fill="#f5a623" opacity="0.08"/>
+          <rect x="12" y="12" width="26" height="26" rx="3" fill="#f5a623" opacity="0.15"/>
+          <path d="M18 18h14M18 23h14M18 28h8" stroke="#f5a623" stroke-width="2.5" stroke-linecap="round"/>
+          <circle cx="34" cy="30" r="6" fill="#f5a623"/>
+          <path d="M32 30l2 2 3-3" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <h3>INFORMASI BERKALA</h3>
+      <p>Informasi yang tersedia Secara Berkala</p>
+      <span class="btn-lihat">Lihat</span>
+    </a>
+    <a class="icon-card" href="#">
+      <div class="icon-placeholder" style="background:#e8f6ef;">
+        <svg width="50" height="50" viewBox="0 0 50 50" fill="none">
+          <circle cx="25" cy="25" r="24" fill="#27ae60" opacity="0.08"/>
+          <circle cx="25" cy="25" r="13" fill="#27ae60" opacity="0.15"/>
+          <path d="M25 15v10l6 4" stroke="#27ae60" stroke-width="2.5" stroke-linecap="round"/>
+          <circle cx="25" cy="25" r="3" fill="#27ae60"/>
+        </svg>
+      </div>
+      <h3>INFORMASI SERTA MERTA</h3>
+      <p>Informasi yang tersedia Secara serta merta</p>
+      <span class="btn-lihat">Lihat</span>
+    </a>
+    <a class="icon-card" href="#">
+      <div class="icon-placeholder" style="background:#fde8e8;">
+        <svg width="50" height="50" viewBox="0 0 50 50" fill="none">
+          <circle cx="25" cy="25" r="24" fill="#e74c3c" opacity="0.08"/>
+          <rect x="14" y="14" width="22" height="22" rx="3" fill="#e74c3c" opacity="0.15"/>
+          <path d="M20 20l10 10M30 20l-10 10" stroke="#e74c3c" stroke-width="2.5" stroke-linecap="round"/>
+          <rect x="14" y="14" width="22" height="22" rx="3" stroke="#e74c3c" stroke-width="2"/>
+        </svg>
+      </div>
+      <h3>INFORMASI DIKECUALIKAN</h3>
+      <p>Informasi yang tidak dapat diakses</p>
+      <span class="btn-lihat">Lihat</span>
+    </a>
+  </div>
+</div>
+
+<!-- MIDDLE BANNERS -->
+<div class="middle-banners">
+  <div class="container">
+    <div class="banner-card">
+      <h4>PERMOHONAN INFORMASI PUBLIK</h4>
+      <p>Silakan isikan form untuk permohonan informasi publik secara resmi.</p>
+      <a href="#permohonan-informasi-publik" class="btn-formulir">FORMULIR</a>
+    </div>
+    <div class="banner-card">
+      <h4>FORMULIR KEBERATAN</h4>
+      <p>Ajukan keberatan atas informasi publik yang tidak sesuai harapan.</p>
+      <a href="#formulir-keberatan" class="btn-formulir">FORMULIR</a>
+    </div>
+    <div class="banner-card">
+      <h4>SOP PELAYANAN</h4>
+      <p>SOP layanan PPID Universitas Andalas.</p>
+      <a href="#sop-pelayanan" class="btn-formulir">SOP</a>
+    </div>
+  </div>
+</div>
+
+<!-- NEWS SECTION -->
+<div class="news-section">
+  <div class="container">
+    <div class="section-title">Informasi Universitas Andalas</div>
+    <div class="news-grid">
+      <a class="news-card" href="#penyesuaian-sistem-kerja-kedinasan">
+        <span class="news-tag">SURAT EDARAN</span>
+        <h3>Penyesuaian Sistem Kerja Kedinasan</h3>
+        <p>Penyesuaian sistem kerja kedinasan di lingkungan Universitas Andalas selama bulan suci Ramadhan 1447 H, sekaligus pengaturan libur nasional dan cuti bersama Hari Suci Nyepi (Tahun Baru Saka 1948) serta Hari Raya Idul Fitri 1447 H.</p>
+      </a>
+      <a class="news-card" href="#perkuliahan-ramdhan">
+        <span class="news-tag">SURAT EDARAN</span>
+        <h3>Perkuliahan Ramadhan</h3>
+        <p>Penyesuaian Aktivitas Perkuliahan Selama Bulan Suci Ramadan 1447 H / 2026 M di lingkungan Universitas Andalas.</p>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <!-- Logo & Visi -->
+    <div class="footer-logo-area">
+                <img class="logo-img" width="auto" height="auto" src="https://ppid.unand.ac.id/images/PPID/logo/ppid%20log.png" alt="PPID UNAND" />
+      <p style="margin-top:14px;">Menjadi Pusat Pelayanan Informasi Publik yang Akurat, Transparan, dan Akuntabel Berbasis Teknologi Informasi.</p>
+      <div class="footer-socials" style="margin-top:16px;">
+        <a href="https://www.facebook.com/ppid.unand" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://www.youtube.com/@UNANDOfficial56" title="Youtube"><i class="fab fa-youtube"></i></a>
+        <a href="https://x.com/PpidUnand" title="Twitter"><i class="fab fa-twitter"></i></a>
+        <a href="https://www.instagram.com/ppid.unand/" title="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="#" title="Mobile Apps"><i class="fas fa-mobile-alt"></i></a>
+      </div>
+    </div>
+
+    <!-- Kontak -->
+    <div class="footer-contact">
+      <h4>Kontak</h4>
+      <p><i class="fas fa-map-marker-alt"></i> Lantai 1 Gedung Rektorat Universitas Andalas, Kampus Limau Manis, Padang, Sumatera Barat, Indonesia 25163</p>
+      <p><i class="fas fa-envelope"></i> <a href="mailto:ppid@adm.unand.ac.id">ppid@adm.unand.ac.id</a></p>
+      <p><i class="fas fa-globe"></i> <a href="https://unand.ac.id">unand.ac.id</a></p>
+    </div>
+
+    <!-- Waktu Layanan -->
+    <div class="footer-hours">
+      <h4>Waktu Layanan</h4>
+      <table>
+        <tr>
+          <th>Hari</th>
+          <th>Jam Layanan</th>
+          <th>Istirahat</th>
+        </tr>
+        <tr>
+          <td>Senin – Kamis</td>
+          <td>08.00 – 16.00 WIB</td>
+          <td>12.00 – 13.00 WIB</td>
+        </tr>
+        <tr>
+          <td>Jumat</td>
+          <td>08.00 – 16.30 WIB</td>
+          <td>11.30 – 13.00 WIB</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- Footer Bottom -->
+  <div class="footer-bottom-bar">
+    <div class="footer-bottom">
+      <span>© 2024 | Pusat Pelayanan Informasi Publik Universitas Andalas</span>
+      <span>Powered by PPID UNAND</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Slider
+  let currentSlide = 0;
+  const totalSlides = 4;
+  const wrapper = document.getElementById('sliderWrapper');
+  const dots = document.querySelectorAll('.dot');
+
+  function updateSlider() {
+    wrapper.style.transform = `translateX(-${currentSlide * 100}%)`;
+    dots.forEach((d, i) => d.classList.toggle('active', i === currentSlide));
+  }
+
+  function moveSlide(dir) {
+    currentSlide = (currentSlide + dir + totalSlides) % totalSlides;
+    updateSlider();
+  }
+
+  function goSlide(i) {
+    currentSlide = i;
+    updateSlider();
+  }
+
+  // Auto slide
+  setInterval(() => moveSlide(1), 5000);
+</script>
+</body>
+</html>
